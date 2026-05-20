@@ -2,7 +2,7 @@ name: Our Hardened Pipeline (Comparison)
 
 on:
   push:
-    branches: [ free-devsecops-pipeline ]
+    branches: [ master ]
   workflow_dispatch:
 
 permissions:
@@ -22,4 +22,3 @@ jobs:
       trivy-severity: HIGH,CRITICAL
       fail-on-findings: false
     secrets: inherit
-    #ss
