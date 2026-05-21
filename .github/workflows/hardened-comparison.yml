@@ -1,3 +1,14 @@
+# ================================================================
+# hardened-comparison.yml — Our Hardened Pipeline on PyGoat
+#
+# Runs our reusable shift-left security pipeline against
+# OladeleO/pygoat for comparison with their original pipeline.
+#
+# Thesis: Shift-Left Security in CI/CD Pipelines
+# Author: Ananthu Chandra Babu
+# University: Westfälische Hochschule Gelsenkirchen, 2026
+# ================================================================
+
 name: Our Hardened Pipeline (Comparison)
 
 on:
@@ -18,8 +29,9 @@ jobs:
       docker-image-name: pygoat-comparison
       semgrep-config: p/python
       enable-flask-rules: false
-      enable-dast: false
+      enable-dast: true
+      app-start-command: 'docker run -d --name pygoat_app -p 8000:8000 pygoat/pygoat:latest && sleep 30'
+      app-port: '8000'
       trivy-severity: HIGH,CRITICAL
       fail-on-findings: false
     secrets: inherit
-    #sds
